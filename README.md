@@ -10,9 +10,12 @@
     智能生活 - 接入米家或者天猫精灵相关的功能（需调研，放在后面）
 
 
-# 技术选型：spring cloud,spring boot, mybatis, springmvc vue h5
-# 数据库：mysql
-# OS：centos5.5
+# 技术选型：
+        spring cloud,spring boot, mybatis, springmvc vue h5
+# 数据库：
+        mysql
+# OS：
+        centos5.5
 
 # 需要用到以下技术点：
     Spring全家桶 
