@@ -17,6 +17,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
@@ -45,12 +46,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .withObjectPostProcessor(new ObjectPostProcessor<Object>() {
+                .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
                     @Override
-                    public <O> O postProcess(O o) {
-                        return null;
-                    }}
-               )
+                    public <O extends FilterSecurityInterceptor> O postProcess(O fsi) {
+                        fsi.setPublishAuthorizationSuccess(true);
+                        return fsi;
+                    }})
                 .and()
                     .formLogin()
                     .loginPage("login_page")
